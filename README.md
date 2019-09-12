@@ -22,20 +22,21 @@ The target platform is an x86 developer computer.
 The focus is to deploy on the low cost target platform Raspberry PI Zero W based on ARM. It adds:
 - static wifi and bluetooth configuration for the test environment,
 - backend services for persistent content management, content auto-refresh and audio output signal from the device,
-- touch pHat version of the audio player interface.
+- touch pHat version of the audio player input interface,
+- LCD 1602 screen information for audio player (not yet configuration or content management)
 The browser version of the audio player is still available and uses the new backend services.
-An external device is still required for initial configuration and content management.
+(An external device is still required for initial configuration and content management)
 
 ### v 0.3 "Canopus" get ready for production usage
 The focus is to offer additional technical services to:
 - configure the device for various WiFi and Bluetooth end user environments,
 - automatically install new software version when available and provide easy rollback if necessary.
-An external device is still required for initial configuration and content management.
+(An external device is still required for initial configuration and content management)
 
-### v 0.4 "Rigil" local display and speaker for full independence
+### v 0.4 "Rigil" full independence
 The goal is to remove the need for an external device. 
-A local display should be sufficient for configuration and content management.
-The output audio signal is directed to a local speaker when an external bluetooth speaker is not available.
+The local display should be sufficient for configuration and content management.
+A local speaker is used when an external bluetooth speaker is not available.
 
 ### v 0.5 "Arcturus" electronic packaging - __first MVP release candidate__
 The goal is to distribute a limited serie of product to beta testers.
