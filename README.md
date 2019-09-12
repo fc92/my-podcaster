@@ -18,17 +18,19 @@ This first version focuses on the core web interface. It provides:
 - browser version of the audio player.
 The target platform is an x86 developer computer.
 
-### v 0.2 "Sirius" introduction of Raspberry PI Zero W 
+### v 0.2 "Sirius" introduction of Raspberry PI Zero W
 The focus is to deploy on the low cost target platform Raspberry PI Zero W based on ARM. It adds:
 - static wifi and bluetooth configuration for the test environment,
 - backend services for persistent content management, content auto-refresh and audio output signal from the device,
 - touch pHat version of the audio player interface.
 The browser version of the audio player is still available and uses the new backend services.
+An external device is still required for initial configuration and content management.
 
 ### v 0.3 "Canopus" get ready for production usage
 The focus is to offer additional technical services to:
 - configure the device for various WiFi and Bluetooth end user environments,
 - automatically install new software version when available and provide easy rollback if necessary.
+An external device is still required for initial configuration and content management.
 
 ### v 0.4 "Rigil" local display and speaker for full independence
 The goal is to remove the need for an external device. 
