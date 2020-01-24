@@ -18,8 +18,8 @@ This first version focuses on the core web interface. It provides:
 - browser version of the audio player.
 The target platform is an x86 developer computer.
 
-### v 0.2 "Sirius" introduction of Raspberry PI Zero W
-The focus is to deploy on the low cost target platform Raspberry PI Zero W based on ARM. It adds:
+### v 0.2 "Sirius" introduction of a physical board
+The focus is to deploy on the low cost target platform (Raspberry PI Zero W or more likely ESP32). It adds:
 - static wifi and bluetooth configuration for the test environment,
 - backend services for persistent content management, content auto-refresh and audio output signal from the device,
 - touch pHat version of the audio player input interface,
