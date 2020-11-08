@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# main program of the podcaster
+# TO DO: proper Py doc and unit tests
 
 import signal
 import time
