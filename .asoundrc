@@ -1,0 +1,18 @@
+pcm.btspeaker {
+  type plug
+  slave.pcm {
+    type bluealsa
+#    device "02:1A:01:0F:0D:01" # Esinkin BT Onkyo
+   device "00:19:F5:86:38:90" # Jongo
+#   device "F4:8C:50:71:4F:2F" # corei7
+   profile "a2dp"
+  }
+
+  hint {
+    show on
+    description "RadioPlayer"
+  }
+
+}
+
+pcm.!default pcm.btspeaker
