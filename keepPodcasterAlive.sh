@@ -1,4 +1,6 @@
 #!/bin/bash
+# call this script from the crontab to (re)start the podcaster automatically
+# TO DO: remove static user
 NB_PODCASTER=`ps aux | grep "podcaster.py" | grep -v grep | wc -l`
 echo $NB_PODCASTER
 if [ $NB_PODCASTER -eq 0 ]
