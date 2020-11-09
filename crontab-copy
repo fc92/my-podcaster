@@ -23,8 +23,8 @@
 # m h  dom mon dow   command
 
 # (re)connect bluetooth if necessary
-* * * * * /home/f/connectBT.sh 2>&1 > /home/f/connectBT.log
+* * * * * $HOME/connectBT.sh 2>&1 > $HOME/connectBT.log
 # update podcasts every 20 minutes
-*/20 * * * * 	date;/home/f/gpodder/bin/gpo update 2>&1 >> /home/f/gpodder-cron.log; /home/f/gpodder/bin/gpo sync 2>&1 >> /home/f/gpodder-cron.log
+*/20 * * * * 	date>> $HOME/gpodder-cron.log;$HOME/gpodder/bin/gpo update 2>&1 >> $HOME/gpodder-cron.log;  $HOME/gpodder/bin/gpo download 2>&1 >> $HOME/gpodder-cron.log; $HOME/gpodder/bin/gpo sync 2>&1 >> $HOME/gpodder-cron.log
 # relance le podcaster si nécessaire
-* * * * * /home/f/keepPodcasterAlive.sh 2>&1 > /home/f/keepPodcasterAlive.log
+* * * * * $HOME/keepPodcasterAlive.sh 2>&1 > $HOME/keepPodcasterAlive.log

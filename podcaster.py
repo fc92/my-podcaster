@@ -22,6 +22,7 @@ radios_url=['http://direct.franceinfo.fr/live/franceinfo-midfi.mp3',
 	"http://direct.fipradio.fr/live/fip-midfi.mp3",
 	"http://ais-live.cloud-services.paris:8000/europe1.mp3",
 	"http://bfmbusiness.cdn.dvmr.fr/bfmbusiness",
+	"http://windu.radionotredame.net/RadioNotreDame-Fm.mp3"
 	]
 
 ''' access to mplayer '''
