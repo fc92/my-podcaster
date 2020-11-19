@@ -42,3 +42,7 @@ Touch pHat buttons allow to:
 - d: volume up
 - 1: TBD next episode
 - Esc: exit
+
+## Tips for development with Visual Studio Code
+Pulse audio is not working with the snap distribution of VS Code.  
+Prefer the .deb version of VS Code for audio tests.
