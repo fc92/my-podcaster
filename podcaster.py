@@ -10,7 +10,6 @@ from mplayer import Player
 import subprocess
 import time
 
-from pynput import keyboard
 
 
 '''webradios list'''
@@ -39,8 +38,17 @@ has_pHat = True
 try:
     import touchphat
 except ImportError:
-    print("touch pHat not available, keyboard interface only")
+    print("touch pHat not available, keyboard interface only (requires X session)")
     has_pHat = False
+
+# import for keyboard if available (usually through ssh -X or for dev)
+has_keyboard = True
+try:
+    from pynput import keyboard
+except ImportError:
+    import signal
+    has_keyboard = False
+    print ("Keyboard not available")
 
 ''' access bluetooth device name for volume control'''
 volume = 100
@@ -182,42 +190,46 @@ if has_pHat == True:
         print("next episode")
         p.step()
 
+# wait for keyboard event if keyboard is available
+if has_keyboard:
+    def on_press(key):
+        """keyboard interface
+        0: play/payse
+        a: play next radio
+        b: play next podcast
+        c: volume down
+        d: volume up
+        1: TBD next episode
+        Esc: exit
+        """
+        global p
+        if key == keyboard.Key.esc:
+            print("Exiting...")
+            exit(0)
+        try:
+            print('alphanumeric key {0} pressed'.format(key.char))
+            if key.char == 'a':
+                p.loadfile(next_radio())
+            elif key.char == 'b':
+                p.loadlist(next_podcast())
+            elif key.char == 'c':
+                volume_down()
+            elif key.char == 'd':
+                volume_up()
+            elif key.char == '0':
+                print("play/pause")
+                p.pause()
+            elif key.char == '1':
+                print("next episode")
+                p.step()
+        except AttributeError:
+            print('special key {0} pressed'.format(key))
 
-def on_press(key):
-    """keyboard interface
-    0: play/payse
-    a: play next radio
-    b: play next podcast
-    c: volume down
-    d: volume up
-    1: TBD next episode
-    Esc: exit
-    """
-    global p
-    if key == keyboard.Key.esc:
-        print("Exiting...")
-        exit(0)
-    try:
-        print('alphanumeric key {0} pressed'.format(key.char))
-        if key.char == 'a':
-            p.loadfile(next_radio())
-        elif key.char == 'b':
-            p.loadlist(next_podcast())
-        elif key.char == 'c':
-            volume_down()
-        elif key.char == 'd':
-            volume_up()
-        elif key.char == '0':
-            print("play/pause")
-            p.pause()
-        elif key.char == '1':
-            print("next episode")
-            p.step()
-    except AttributeError:
-        print('special key {0} pressed'.format(key))
 
+    # Collect events until released
+    with keyboard.Listener(
+            on_press=on_press) as listener:
+        listener.join()
 
-# Collect events until released
-with keyboard.Listener(
-        on_press=on_press) as listener:
-    listener.join()
+else:
+    signal.pause()
