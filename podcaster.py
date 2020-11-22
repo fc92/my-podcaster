@@ -104,14 +104,17 @@ def next_radio():
 
 
 def next_podcast():
-    """return the path to next podcast playlist file"""
+    """return the path to next podcast playlist file reordered to play newest episod first"""
     global podcast_it, playlist_dir, podcast_playlists
     try:
         nextpodcast = next(podcast_it)
         # lit("lecture du podcast "+nextpodcast)
         podcast = playlist_dir+'/'+nextpodcast
-        print(podcast)
-        return podcast
+        playlist_reorded = podcast+".reordered"
+        # prepare a file with reverse order to play newest epidodes first
+        os.system("tac \""+podcast+"\" > \""+playlist_reorded+"\"")
+        print(playlist_reorded)
+        return playlist_reorded
     except StopIteration:
         """refresh podcast list when the end of the list is reached"""
         podcast_playlists = os.listdir(playlist_dir)
