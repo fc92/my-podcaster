@@ -33,3 +33,16 @@ Touch pHat buttons allow to:
 - button D: increase volume
 - button back: pause/play
 - [TO DO] button enter: go to next episode of the current podcast playlist
+
+## Keyboard interface (mainly for development on PC)
+- 0: play/payse
+- a: play next radio
+- b: play next podcast
+- c: volume down
+- d: volume up
+- 1: TBD next episode
+- Esc: exit
+
+## Tips for development with Visual Studio Code
+Pulse audio is not working with the snap distribution of VS Code.  
+Prefer the .deb version of VS Code for audio tests.
