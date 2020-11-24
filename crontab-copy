@@ -25,6 +25,6 @@
 # (re)connect bluetooth if necessary
 * * * * * $HOME/connectBT.sh 2>&1 > $HOME/connectBT.log
 # update podcasts every 20 minutes
-*/20 * * * * 	date>> $HOME/gpodder-cron.log;$HOME/gpodder/bin/gpo update 2>&1 >> $HOME/gpodder-cron.log;  $HOME/gpodder/bin/gpo download 2>&1 >> $HOME/gpodder-cron.log; $HOME/gpodder/bin/gpo sync 2>&1 >> $HOME/gpodder-cron.log
+*/20 * * * * 	$HOME/updatePodcasts.sh
 # relance le podcaster si nécessaire
 * * * * * $HOME/keepPodcasterAlive.sh 2>&1 > $HOME/keepPodcasterAlive.log
