@@ -16,8 +16,9 @@ So the first implementation is written for raspi with a few requirements:
 ## Initial configuration
 Initial configuration is done with SSH access to raspi:
 - install dependencies with apt package management system
-- configure bluetooth manually
-- copy python code and run it manually
+- configure bluetooth manually (bluealsa with $HOME/.asoundrc to specify the bluetooth a2dp sink devicet to use ; only one is supported)
+- git clone https://github.com/fc92
+- run podcaster.py manually
 - copy shell scripts and configure crontab
 Reommended tests:
 - bluetooth connection at boot
@@ -32,7 +33,7 @@ Touch pHat buttons allow to:
 - button C: reduce volume
 - button D: increase volume
 - button back: pause/play
-- [TO DO] button enter: go to next episode of the current podcast playlist
+- button enter: go to next episode of the current podcast playlist
 
 ## Keyboard interface (mainly for development on PC)
 - 0: play/payse
@@ -40,7 +41,7 @@ Touch pHat buttons allow to:
 - b: play next podcast
 - c: volume down
 - d: volume up
-- 1: TBD next episode
+- 1: next episode in the current podcast playlist
 - Esc: exit
 
 ## Tips for development with Visual Studio Code
