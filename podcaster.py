@@ -203,9 +203,9 @@ def map_key_to_podcaster_action(char):
         volume_down()
     elif char.lower() == 'd':
         volume_up()
-    elif char == '0':
+    elif char.lower() in ['0', 'enter']:
         play_pause()
-    elif char == '1':
+    elif char.lower() in ['1', 'back']:
         next_episode_in_podcast()
 
 
