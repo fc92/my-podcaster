@@ -1,6 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# This file is part of my-podcaster.
+
+# my-podcaster is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# my-podcaster is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with my-podcaster.  If not, see <https://www.gnu.org/licenses/>
+
+# Project home page: https://github.com/fc92/my-podcaster
+
 # main program of the podcaster
 # TO DO: proper Py doc and unit tests
 
@@ -197,7 +214,7 @@ if has_pHat == True:
     @touchphat.on_touch(['A', 'B', 'C', 'D', 'Enter', 'Back'])
     def handle_webradio(event):
         '''touch pHat interface
-        Back: play/payse
+        Back: play/pause
         A: play next radio
         B: play next podcast
         C: volume down
