@@ -157,7 +157,7 @@ def volume_up():
     global volume
     if (volume < 91):
         volume += 10
-        print("volume up 10 % to "+volume+" %")
+        print("volume up 10 % to "+str(volume)+" %")
         volume_apply()
 
 
@@ -166,7 +166,7 @@ def volume_down():
     global volume
     if (volume > 9):
         volume -= 10
-        print("volume down 10 % to "+volume+" %")
+        print("volume down 10 % to "+str(volume)+" %")
         volume_apply()
 
 
