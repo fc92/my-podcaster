@@ -82,8 +82,9 @@ if powered == "yes":
     bt_name = subprocess.Popen("bluetoothctl info | awk  -F \": \" '/Name/ {print $2}'",
                                shell=True, stdout=subprocess.PIPE).communicate()[0].decode('ascii').rstrip()
     print("BT device name = "+bt_name)
-    bt_name = subprocess.Popen("bluetoothctl info | awk '/Device/ {print $2}'",
+    bt_address = subprocess.Popen("bluetoothctl info | awk '/Device/ {print $2}'",
                                shell=True, stdout=subprocess.PIPE).communicate()[0].decode('ascii').rstrip()
+    has_bt = True
 
 else:
     print("BT device not available !!! (this is ok for most developer tasks)")
@@ -156,7 +157,7 @@ def volume_up():
     global volume
     if (volume < 91):
         volume += 10
-        print("volume up 10 %")
+        print("volume up 10 % to "+volume+" %")
         volume_apply()
 
 
@@ -165,7 +166,7 @@ def volume_down():
     global volume
     if (volume > 9):
         volume -= 10
-        print("volume down 10 %")
+        print("volume down 10 % to "+volume+" %")
         volume_apply()
 
 
