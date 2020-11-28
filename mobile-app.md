@@ -104,9 +104,21 @@ npm WARN @pmmmwh/react-refresh-webpack-plugin@0.3.3 requires a peer of react-ref
 + expo-cli@4.0.4
 added 1874 packages from 815 contributors in 61.24s
 
-
 ```
-### Create hello worl project for Android
+OPTIONAL: Setup [Android Studio Emulator](https://docs.expo.io/workflow/android-studio-emulator) to test the app without Android phone.  
+Download the last stable version., uncompress it in $HOME. 
+Make sure KVM is already installed to get better performance as mentionned in the [documentation](https://developer.android.com/studio/run/emulator-acceleration?utm_source=android-studio#vm-linux). The Linux package of the documentation might differ...  
+Launch setup with bin/studio.sh script. After a few question download will start and take some time...  
+A default pixel device is available for testing with the last Android SDK. Add it to .bashrc: 
+```
+# for Android Studio
+export ANDROID_SDK=/home/f/Android/Sdk
+```
+
+On Android test device install Expo App.
+
+
+### Create hello world project for Android
 ```
 $ vue-native init vue-app
 Using globally installed expo-cli 4.0.4
@@ -166,3 +178,25 @@ found 9 low severity vulnerabilities
 (Use `node --trace-warnings ...` to show where the warning was created)
 Setup complete!
 ```
+Run the newly created empty app from the Linux prompt:  
+```
+$ npm start  
+                                                                    
+> @ start /home/f/my-podcaster/vue-app                 
+> expo start                                                        
+
+Starting project at /home/f/my-podcaster/vue-app   
+Expo DevTools is running at http://localhost:19002                                                                                      
+Opening DevTools in the browser... (press shift-d to disable)
+Starting Metro Bundler                                              
+[Local address and QR Code HERE]
+ To run the app with live reloading, choose one of:
+ › Scan the QR code above with the Expo app (Android) or the Camera app (iOS).
+ › Press a for Android emulator, or w to run on web.
+ › Press e to send a link to your phone with email.
+
+Press ? to show a list of all available commands.
+Logs for your project will appear below. Press Ctrl+C to exit.
+```
+Flash the QR Code on Android from the Expo app. "My Vue Native App" appears on the mobile.  
+
