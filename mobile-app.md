@@ -114,8 +114,10 @@ A default pixel device is available for testing with the last Android SDK. Add i
 # for Android Studio
 export ANDROID_SDK=/home/f/Android/Sdk
 ```
+Various tests failed so far. TBC
 
-On Android test device install Expo App.
+
+On Android test device install Expo App and test without Android Studio Emulator.
 
 
 ### Create hello world project for Android
