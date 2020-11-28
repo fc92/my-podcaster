@@ -1,5 +1,5 @@
 # Mobile app information
-This documentation is related to mobile app prototyping. First try is with Vue Native framework...
+This documentation is related to UNFINISHED mobile app prototyping. First try is with Vue Native framework...
 
 ## Vue native
 ### Setup
