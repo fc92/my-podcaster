@@ -46,6 +46,19 @@ radios_url = ['http://direct.franceinfo.fr/live/franceinfo-midfi.mp3',
               ]
 radios_it = iter(radios_url)
 
+# Welcome message
+print("""
+
+Touch pHAT: Buttons Demo & mplayer bluetooth
+rely on linux mplayer -> alsa -> bluealsa a2dp source -> bluetooth for audio
+rely on gPodder for podcast management
+intially designed for Raspberry Pi Zero W 1.1 + Raspbian Buster Lite
+
+Lights up each LED in turn, then detects your button presses.
+
+Press Ctrl+C to exit!
+
+""")
 ''' access to mplayer '''
 out = open(str(Path.home())+"/mplayer.log", "a")
 err = open(str(Path.home())+"/mplayer.err.log", "a")
@@ -63,6 +76,16 @@ except ImportError:
 has_keyboard = True
 try:
     from pynput import keyboard
+    print( """
+    keyboard interface:
+        0: play/payse
+        a: play next radio
+        b: play next podcast
+        c: volume down
+        d: volume up
+        1: next episode in the current podcast playlist
+        Esc: exit
+        """)
 except ImportError:
     import signal
     has_keyboard = False
@@ -73,43 +96,49 @@ volume = 100
 bt_name = ""
 bt_address = ""
 has_bt = False
-# check availability of BT
-powered = subprocess.Popen("bluetoothctl show | awk  -F \": \" '/Powered/ {print $2}'",
-                           shell=True, stdout=subprocess.PIPE).communicate()[0].decode('ascii').rstrip()
-if powered == "yes":
-    has_pHat = True
-    # get BT information if available
-    bt_name = subprocess.Popen("bluetoothctl info | awk  -F \": \" '/Name/ {print $2}'",
-                               shell=True, stdout=subprocess.PIPE).communicate()[0].decode('ascii').rstrip()
-    print("BT device name = "+bt_name)
-    bt_address = subprocess.Popen("bluetoothctl info | awk '/Device/ {print $2}'",
-                               shell=True, stdout=subprocess.PIPE).communicate()[0].decode('ascii').rstrip()
-    has_bt = True
-
-else:
-    print("BT device not available !!! (this is ok for most developer tasks)")
 
 
-print("""
-
-Touch pHAT: Buttons Demo & mplayer bluetooth
-rely on linux mplayer -> alsa -> bluealsa a2dp source -> bluetooth for audio
-rely on gPodder for podcast management
-intially designed for Raspberry Pi Zero W 1.1 + Raspbian Buster Lite
-
-Lights up each LED in turn, then detects your button presses.
-
-Press Ctrl+C to exit!
-
-""")
-
-if has_pHat == True:
+if has_pHat:
     for pad in ['Back', 'A', 'B', 'C', 'D', 'Enter']:
         touchphat.set_led(pad, True)
         time.sleep(0.1)
         touchphat.set_led(pad, False)
         time.sleep(0.1)
+    print('''
+    
+    touch pHat interface:
+        Back: play/pause
+        A: play next radio
+        B: play next podcast
+        C: volume down
+        D: volume up
+        Enter: next episode in the current podcast playlist
+        ''')
 
+def get_BT_info():
+    '''get information regarding BT if available'''
+    global bt_name, bt_address,has_bt
+
+    # check if BT is enabled
+    powered = subprocess.Popen("bluetoothctl show | awk  -F \": \" '/Powered/ {print $2}'",
+                            shell=True, stdout=subprocess.PIPE).communicate()[0].decode('ascii').rstrip()
+    if powered == "yes":
+        # get BT information if available
+        bt_name = subprocess.Popen("bluetoothctl info | awk  -F \": \" '/Name/ {print $2}'",
+                                shell=True, stdout=subprocess.PIPE).communicate()[0].decode('ascii').rstrip()
+        if bt_name == "":
+            print("BT device name not found: volume up or down disable")
+            return # has_bt remains False
+
+        print("BT device name = "+bt_name)
+        bt_address = subprocess.Popen("bluetoothctl info | awk '/Device/ {print $2}'",
+                                    shell=True, stdout=subprocess.PIPE).communicate()[0].decode('ascii').rstrip()
+        has_bt = True
+
+    else:
+        print("BT device not available !!! (this is ok for most developer tasks)")
+
+get_BT_info()
 
 def next_radio_url():
     """return the URL of next webradio"""
@@ -209,9 +238,18 @@ def map_key_to_podcaster_action(char):
     elif char.lower() in ['1', 'enter']:
         next_episode_in_podcast()
 
+    # Acknowledge input with LED and wait a bit
+    if has_pHat:
+        for pad in ['Back', 'A', 'B', 'C', 'D', 'Enter']:
+            touchphat.set_led(pad, True)
+    time.sleep(0.3)
+    if has_pHat:
+        for pad in ['Back', 'A', 'B', 'C', 'D', 'Enter']:
+            touchphat.set_led(pad, False)
+
 
 # manages touch pHat events if the device is available
-if has_pHat == True:
+if has_pHat:
     @touchphat.on_touch(['A', 'B', 'C', 'D', 'Enter', 'Back'])
     def handle_webradio(event):
         '''touch pHat interface
