@@ -44,6 +44,9 @@ Touch pHat buttons allow to:
 - 1: next episode in the current podcast playlist
 - Esc: exit
 
+## Unit tests
+Install pytest and pytest-mock
+
 ## Tips for development with Visual Studio Code
 Pulse audio is not working with the snap distribution of VS Code.  
 Prefer the .deb version of VS Code for audio tests.
