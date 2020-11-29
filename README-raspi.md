@@ -1,7 +1,7 @@
-# README for Raspberry Pi Zero W version (raspi)
+# README for [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/?resellerType=home) version (raspi)
 The initial roadmap was written with custom NodeJS web interface in mind.
-It turned out that most of the features are available from existing open source projects more system oriented (gPodder+maplyer).  
-A simple touch pHat device provides a simple interface directly on raspi.  
+It turned out that most of the features are available from existing open source projects more Linux system oriented (gPodder+maplyer).  
+A simple [touch pHat device](https://shop.pimoroni.com/products/touch-phat) provides a simple interface directly on raspi.  
 Including the micro SD Card and an USB AC Power adapter, the hardware cost is around EUR 30 / USD 36 end of 2020.
 
 ## Requirements
