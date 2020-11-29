@@ -238,6 +238,15 @@ def map_key_to_podcaster_action(char):
     elif char.lower() in ['1', 'enter']:
         next_episode_in_podcast()
 
+    # Acknowledge input with LED and wait a bit
+    if has_pHat:
+        for pad in ['Back', 'A', 'B', 'C', 'D', 'Enter']:
+            touchphat.set_led(pad, True)
+    time.sleep(0.3)
+    if has_pHat:
+        for pad in ['Back', 'A', 'B', 'C', 'D', 'Enter']:
+            touchphat.set_led(pad, False)
+
 
 # manages touch pHat events if the device is available
 if has_pHat:
